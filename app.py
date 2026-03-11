@@ -5,39 +5,104 @@ import os
 import boto3
 import pandas as pd
 import requests
+import logging
+from logging.handlers import RotatingFileHandler
 from datetime import datetime
 from fastapi import FastAPI, BackgroundTasks, Request
 from baseline import BaselineManager
 from processor import process_file
+
+# Logging Setup
+LOG_PATH = "/opt/anomaly-detection/app.log"
+
+logger = logging.getLogger("anomaly_app")
+logger.setLevel(logging.INFO)
+
+# Prevent duplicate handlers if the module gets reloaded
+if not logger.handlers:
+    formatter = logging.Formatter(
+        "%(asctime)s | %(levelname)s | %(name)s | %(message)s"
+    )
+
+    # Log to file
+    file_handler = RotatingFileHandler(
+        LOG_PATH, maxBytes=5 * 1024 * 1024, backupCount=3
+    )
+    file_handler.setLevel(logging.INFO)
+    file_handler.setFormatter(formatter)
+
+    # Log to console
+    console_handler = logging.StreamHandler()
+    console_handler.setLevel(logging.INFO)
+    console_handler.setFormatter(formatter)
+
+    logger.addHandler(file_handler)
+    logger.addHandler(console_handler)
+
 
 app = FastAPI(title="Anomaly Detection Pipeline")
 
 s3 = boto3.client("s3")
 BUCKET_NAME = os.environ["BUCKET_NAME"]
 
+logger.info("Starting anomaly detection API")
+logger.info(f"Configured bucket: {BUCKET_NAME}")
+
+
 # ── SNS subscription confirmation + message handler ──────────────────────────
 
 @app.post("/notify")
-async def handle_sns(request: Request, background_tasks: BackgroundTasks):
-    body = await request.json()
-    msg_type = request.headers.get("x-amz-sns-message-type")
+async def notify(request: Request, background_tasks: BackgroundTasks):
+    try:
+        body = await request.json()
+        logger.info("Received request on /notify")
+        logger.info(f"SNS message type: {body.get('Type', 'UNKNOWN')}")
 
-    # SNS sends a SubscriptionConfirmation before it will deliver any messages.
-    # Visiting the SubscribeURL confirms the subscription.
-    if msg_type == "SubscriptionConfirmation":
-        confirm_url = body["SubscribeURL"]
-        requests.get(confirm_url)
-        return {"status": "confirmed"}
+        msg_type = body.get("Type")
 
-    if msg_type == "Notification":
-        # The SNS message body contains the S3 event as a JSON string
-        s3_event = json.loads(body["Message"])
-        for record in s3_event.get("Records", []):
-            key = record["s3"]["object"]["key"]
-            if key.startswith("raw/") and key.endswith(".csv"):
-                background_tasks.add_task(process_file, BUCKET_NAME, key)
+        if msg_type == "SubscriptionConfirmation":
+            confirm_url = body.get("SubscribeURL")
+            if not confirm_url:
+                logger.error("SubscriptionConfirmation received without SubscribeURL")
+                return {"status": "error", "message": "Missing SubscribeURL"}
 
-    return {"status": "ok"}
+            logger.info(f"Confirming SNS subscription using URL: {confirm_url}")
+            response = requests.get(confirm_url, timeout=10)
+            logger.info(f"SNS subscription confirmation response code: {response.status_code}")
+            return {"status": "subscription confirmed"}
+
+        elif msg_type == "Notification":
+            message_str = body.get("Message")
+            if not message_str:
+                logger.error("Notification received without Message field")
+                return {"status": "error", "message": "Missing Message"}
+
+            logger.info("Parsing SNS notification message")
+            message = json.loads(message_str)
+
+            records = message.get("Records", [])
+            logger.info(f"Notification contains {len(records)} record(s)")
+
+            for record in records:
+                key = record["s3"]["object"]["key"]
+                logger.info(f"Received S3 object key: {key}")
+
+                if key.startswith("raw/") and key.endswith(".csv"):
+                    logger.info(f"Queueing background processing for file: {key}")
+                    background_tasks.add_task(process_file, BUCKET_NAME, key)
+                else:
+                    logger.info(f"Skipping non-matching object key: {key}")
+
+            return {"status": "notification processed"}
+
+        else:
+            logger.warning(f"Unhandled SNS message type: {msg_type}")
+            return {"status": "ignored", "message": f"Unknown SNS type: {msg_type}"}
+
+    except Exception as e:
+        logger.exception(f"Error in /notify: {e}")
+        return {"status": "error", "message": str(e)}
+
 
 
 # ── Query endpoints ───────────────────────────────────────────────────────────
@@ -127,4 +192,5 @@ def get_current_baseline():
 
 @app.get("/health")
 def health():
-    return {"status": "ok", "bucket": BUCKET_NAME, "timestamp": datetime.utcnow().isoformat()}
+    logger.info("Health check endpoint called")
+    return {"status": "ok", "bucket": BUCKET_NAME}
