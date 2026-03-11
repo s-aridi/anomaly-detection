@@ -1,0 +1,245 @@
+2026-03-11 16:39:10,161 | INFO | anomaly_app | Starting anomaly detection API
+2026-03-11 16:39:10,161 | INFO | anomaly_app | Configured bucket: anomaly-detection-stack-appbucket-bm8kuvxwomcf
+2026-03-11 16:47:20,406 | INFO | anomaly_app | Health check endpoint called
+2026-03-11 16:48:01,033 | INFO | anomaly_app | Health check endpoint called
+2026-03-11 16:50:31,994 | INFO | anomaly_app | Received request on /notify
+2026-03-11 16:50:31,994 | INFO | anomaly_app | SNS message type: SubscriptionConfirmation
+2026-03-11 16:50:31,994 | INFO | anomaly_app | Confirming SNS subscription using URL: https://sns.us-east-1.amazonaws.com/?Action=ConfirmSubscription&TopicArn=arn:aws:sns:us-east-1:501883958854:ds5220-dp1&Token=2336412f37fb687f5d51e6e2425929f52e8e345680dd95127eff3e5b7b761843afe77f102bb56d880a59a96e82d5aa086678c95857bbc95353552dce50d1f21da3cd76960328c70a2c6e9fa1f3835142c35bcf8fdfab16cdefc4e45c98645af5a8d9e8218e26b1c6a4afbafb0c7e7df0
+2026-03-11 16:50:32,151 | INFO | anomaly_app | SNS subscription confirmation response code: 200
+2026-03-11 19:57:04,190 | INFO | anomaly_app | Starting anomaly detection API
+2026-03-11 19:57:04,190 | INFO | anomaly_app | Configured bucket: anomaly-detection-stack-appbucket-bm8kuvxwomcf
+2026-03-11 20:03:29,089 | INFO | anomaly_app | Received request on /notify
+2026-03-11 20:03:29,089 | INFO | anomaly_app | SNS message type: Notification
+2026-03-11 20:03:29,089 | INFO | anomaly_app | Parsing SNS notification message
+2026-03-11 20:03:29,089 | INFO | anomaly_app | Notification contains 1 record(s)
+2026-03-11 20:03:29,090 | INFO | anomaly_app | Received S3 object key: raw/sensors_20260311T200327.csv
+2026-03-11 20:03:29,090 | INFO | anomaly_app | Queueing background processing for file: raw/sensors_20260311T200327.csv
+2026-03-11 20:03:29,097 | INFO | anomaly_processor | Starting processing for s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/raw/sensors_20260311T200327.csv
+2026-03-11 20:03:29,097 | INFO | anomaly_processor | Downloading raw file: s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/raw/sensors_20260311T200327.csv
+2026-03-11 20:03:29,168 | INFO | anomaly_processor | Loaded 100 rows with columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+2026-03-11 20:03:29,168 | INFO | anomaly_processor | Loading current baseline from S3
+2026-03-11 20:03:29,168 | INFO | anomaly_baseline | Loading baseline from s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/state/baseline.json
+2026-03-11 20:03:29,243 | INFO | anomaly_baseline | No existing baseline found at s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/state/baseline.json; starting with empty baseline
+2026-03-11 20:03:29,243 | INFO | anomaly_processor | Baseline loaded successfully
+2026-03-11 20:03:29,243 | INFO | anomaly_processor | Column 'temperature' has 100 non-null values for baseline update
+2026-03-11 20:03:29,244 | INFO | anomaly_baseline | Initializing baseline state for channel 'temperature'
+2026-03-11 20:03:29,244 | INFO | anomaly_baseline | Updating baseline for channel 'temperature' with 100 new values
+2026-03-11 20:03:29,244 | INFO | anomaly_baseline | Updated channel 'temperature': count 0 -> 100, mean=21.4969, std=1.8121
+2026-03-11 20:03:29,244 | INFO | anomaly_processor | Updated baseline for 'temperature': count=100, mean=21.4969, std=1.8121
+2026-03-11 20:03:29,244 | INFO | anomaly_processor | Column 'humidity' has 100 non-null values for baseline update
+2026-03-11 20:03:29,244 | INFO | anomaly_baseline | Initializing baseline state for channel 'humidity'
+2026-03-11 20:03:29,244 | INFO | anomaly_baseline | Updating baseline for channel 'humidity' with 100 new values
+2026-03-11 20:03:29,245 | INFO | anomaly_baseline | Updated channel 'humidity': count 0 -> 100, mean=55.0160, std=5.2561
+2026-03-11 20:03:29,245 | INFO | anomaly_processor | Updated baseline for 'humidity': count=100, mean=55.0160, std=5.2561
+2026-03-11 20:03:29,245 | INFO | anomaly_processor | Column 'pressure' has 100 non-null values for baseline update
+2026-03-11 20:03:29,245 | INFO | anomaly_baseline | Initializing baseline state for channel 'pressure'
+2026-03-11 20:03:29,245 | INFO | anomaly_baseline | Updating baseline for channel 'pressure' with 100 new values
+2026-03-11 20:03:29,245 | INFO | anomaly_baseline | Updated channel 'pressure': count 0 -> 100, mean=1012.3311, std=4.0587
+2026-03-11 20:03:29,245 | INFO | anomaly_processor | Updated baseline for 'pressure': count=100, mean=1012.3311, std=4.0587
+2026-03-11 20:03:29,246 | INFO | anomaly_processor | Column 'wind_speed' has 100 non-null values for baseline update
+2026-03-11 20:03:29,246 | INFO | anomaly_baseline | Initializing baseline state for channel 'wind_speed'
+2026-03-11 20:03:29,246 | INFO | anomaly_baseline | Updating baseline for channel 'wind_speed' with 100 new values
+2026-03-11 20:03:29,246 | INFO | anomaly_baseline | Updated channel 'wind_speed': count 0 -> 100, mean=9.6733, std=2.6882
+2026-03-11 20:03:29,246 | INFO | anomaly_processor | Updated baseline for 'wind_speed': count=100, mean=9.6733, std=2.6882
+2026-03-11 20:03:29,246 | INFO | anomaly_processor | Running anomaly detector
+2026-03-11 20:03:29,412 | INFO | anomaly_processor | Anomaly detection completed successfully
+2026-03-11 20:03:29,414 | INFO | anomaly_processor | Uploading scored CSV to s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/processed/sensors_20260311T200327.csv
+2026-03-11 20:03:29,442 | INFO | anomaly_processor | Saving updated baseline to S3
+2026-03-11 20:03:29,442 | INFO | anomaly_baseline | Saving baseline to s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/state/baseline.json
+2026-03-11 20:03:29,476 | INFO | anomaly_baseline | Baseline saved successfully
+2026-03-11 20:03:29,477 | INFO | anomaly_processor | Baseline saved to s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/state/baseline.json
+2026-03-11 20:03:29,506 | INFO | anomaly_processor | Uploaded log file to s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/logs/app.log
+2026-03-11 20:03:29,506 | INFO | anomaly_processor | Uploading summary JSON to s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/processed/sensors_20260311T200327_summary.json
+2026-03-11 20:03:29,535 | INFO | anomaly_processor | Finished processing s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/raw/sensors_20260311T200327.csv | rows=100 | anomalies=5
+2026-03-11 20:04:28,831 | INFO | anomaly_app | Received request on /notify
+2026-03-11 20:04:28,831 | INFO | anomaly_app | SNS message type: Notification
+2026-03-11 20:04:28,831 | INFO | anomaly_app | Parsing SNS notification message
+2026-03-11 20:04:28,832 | INFO | anomaly_app | Notification contains 1 record(s)
+2026-03-11 20:04:28,832 | INFO | anomaly_app | Received S3 object key: raw/sensors_20260311T200427.csv
+2026-03-11 20:04:28,832 | INFO | anomaly_app | Queueing background processing for file: raw/sensors_20260311T200427.csv
+2026-03-11 20:04:28,833 | INFO | anomaly_processor | Starting processing for s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/raw/sensors_20260311T200427.csv
+2026-03-11 20:04:28,833 | INFO | anomaly_processor | Downloading raw file: s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/raw/sensors_20260311T200427.csv
+2026-03-11 20:04:28,912 | INFO | anomaly_processor | Loaded 100 rows with columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+2026-03-11 20:04:28,912 | INFO | anomaly_processor | Loading current baseline from S3
+2026-03-11 20:04:28,912 | INFO | anomaly_baseline | Loading baseline from s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/state/baseline.json
+2026-03-11 20:04:29,036 | INFO | anomaly_baseline | Baseline loaded successfully
+2026-03-11 20:04:29,036 | INFO | anomaly_processor | Baseline loaded successfully
+2026-03-11 20:04:29,037 | INFO | anomaly_processor | Column 'temperature' has 100 non-null values for baseline update
+2026-03-11 20:04:29,037 | INFO | anomaly_baseline | Updating baseline for channel 'temperature' with 100 new values
+2026-03-11 20:04:29,038 | INFO | anomaly_baseline | Updated channel 'temperature': count 100 -> 200, mean=21.7407, std=1.7384
+2026-03-11 20:04:29,038 | INFO | anomaly_processor | Updated baseline for 'temperature': count=200, mean=21.7407, std=1.7384
+2026-03-11 20:04:29,038 | INFO | anomaly_processor | Column 'humidity' has 100 non-null values for baseline update
+2026-03-11 20:04:29,038 | INFO | anomaly_baseline | Updating baseline for channel 'humidity' with 100 new values
+2026-03-11 20:04:29,038 | INFO | anomaly_baseline | Updated channel 'humidity': count 100 -> 200, mean=55.6930, std=8.0304
+2026-03-11 20:04:29,038 | INFO | anomaly_processor | Updated baseline for 'humidity': count=200, mean=55.6930, std=8.0304
+2026-03-11 20:04:29,039 | INFO | anomaly_processor | Column 'pressure' has 100 non-null values for baseline update
+2026-03-11 20:04:29,039 | INFO | anomaly_baseline | Updating baseline for channel 'pressure' with 100 new values
+2026-03-11 20:04:29,039 | INFO | anomaly_baseline | Updated channel 'pressure': count 100 -> 200, mean=1012.9300, std=3.6379
+2026-03-11 20:04:29,039 | INFO | anomaly_processor | Updated baseline for 'pressure': count=200, mean=1012.9300, std=3.6379
+2026-03-11 20:04:29,040 | INFO | anomaly_processor | Column 'wind_speed' has 100 non-null values for baseline update
+2026-03-11 20:04:29,040 | INFO | anomaly_baseline | Updating baseline for channel 'wind_speed' with 100 new values
+2026-03-11 20:04:29,040 | INFO | anomaly_baseline | Updated channel 'wind_speed': count 100 -> 200, mean=9.5818, std=2.8913
+2026-03-11 20:04:29,040 | INFO | anomaly_processor | Updated baseline for 'wind_speed': count=200, mean=9.5818, std=2.8913
+2026-03-11 20:04:29,040 | INFO | anomaly_processor | Running anomaly detector
+2026-03-11 20:04:29,199 | INFO | anomaly_processor | Anomaly detection completed successfully
+2026-03-11 20:04:29,201 | INFO | anomaly_processor | Uploading scored CSV to s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/processed/sensors_20260311T200427.csv
+2026-03-11 20:04:29,238 | INFO | anomaly_processor | Saving updated baseline to S3
+2026-03-11 20:04:29,238 | INFO | anomaly_baseline | Saving baseline to s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/state/baseline.json
+2026-03-11 20:04:29,274 | INFO | anomaly_baseline | Baseline saved successfully
+2026-03-11 20:04:29,274 | INFO | anomaly_processor | Baseline saved to s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/state/baseline.json
+2026-03-11 20:04:29,304 | INFO | anomaly_processor | Uploaded log file to s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/logs/app.log
+2026-03-11 20:04:29,305 | INFO | anomaly_processor | Uploading summary JSON to s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/processed/sensors_20260311T200427_summary.json
+2026-03-11 20:04:29,341 | INFO | anomaly_processor | Finished processing s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/raw/sensors_20260311T200427.csv | rows=100 | anomalies=7
+2026-03-11 20:05:29,205 | INFO | anomaly_app | Received request on /notify
+2026-03-11 20:05:29,205 | INFO | anomaly_app | SNS message type: Notification
+2026-03-11 20:05:29,205 | INFO | anomaly_app | Parsing SNS notification message
+2026-03-11 20:05:29,206 | INFO | anomaly_app | Notification contains 1 record(s)
+2026-03-11 20:05:29,206 | INFO | anomaly_app | Received S3 object key: raw/sensors_20260311T200528.csv
+2026-03-11 20:05:29,206 | INFO | anomaly_app | Queueing background processing for file: raw/sensors_20260311T200528.csv
+2026-03-11 20:05:29,207 | INFO | anomaly_processor | Starting processing for s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/raw/sensors_20260311T200528.csv
+2026-03-11 20:05:29,207 | INFO | anomaly_processor | Downloading raw file: s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/raw/sensors_20260311T200528.csv
+2026-03-11 20:05:29,304 | INFO | anomaly_processor | Loaded 100 rows with columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+2026-03-11 20:05:29,305 | INFO | anomaly_processor | Loading current baseline from S3
+2026-03-11 20:05:29,305 | INFO | anomaly_baseline | Loading baseline from s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/state/baseline.json
+2026-03-11 20:05:29,397 | INFO | anomaly_baseline | Baseline loaded successfully
+2026-03-11 20:05:29,397 | INFO | anomaly_processor | Baseline loaded successfully
+2026-03-11 20:05:29,398 | INFO | anomaly_processor | Column 'temperature' has 100 non-null values for baseline update
+2026-03-11 20:05:29,398 | INFO | anomaly_baseline | Updating baseline for channel 'temperature' with 100 new values
+2026-03-11 20:05:29,398 | INFO | anomaly_baseline | Updated channel 'temperature': count 200 -> 300, mean=21.7926, std=2.0973
+2026-03-11 20:05:29,398 | INFO | anomaly_processor | Updated baseline for 'temperature': count=300, mean=21.7926, std=2.0973
+2026-03-11 20:05:29,399 | INFO | anomaly_processor | Column 'humidity' has 100 non-null values for baseline update
+2026-03-11 20:05:29,399 | INFO | anomaly_baseline | Updating baseline for channel 'humidity' with 100 new values
+2026-03-11 20:05:29,399 | INFO | anomaly_baseline | Updated channel 'humidity': count 200 -> 300, mean=55.5750, std=7.5446
+2026-03-11 20:05:29,399 | INFO | anomaly_processor | Updated baseline for 'humidity': count=300, mean=55.5750, std=7.5446
+2026-03-11 20:05:29,399 | INFO | anomaly_processor | Column 'pressure' has 100 non-null values for baseline update
+2026-03-11 20:05:29,399 | INFO | anomaly_baseline | Updating baseline for channel 'pressure' with 100 new values
+2026-03-11 20:05:29,400 | INFO | anomaly_baseline | Updated channel 'pressure': count 200 -> 300, mean=1012.9936, std=3.7113
+2026-03-11 20:05:29,400 | INFO | anomaly_processor | Updated baseline for 'pressure': count=300, mean=1012.9936, std=3.7113
+2026-03-11 20:05:29,400 | INFO | anomaly_processor | Column 'wind_speed' has 100 non-null values for baseline update
+2026-03-11 20:05:29,400 | INFO | anomaly_baseline | Updating baseline for channel 'wind_speed' with 100 new values
+2026-03-11 20:05:29,400 | INFO | anomaly_baseline | Updated channel 'wind_speed': count 200 -> 300, mean=9.6931, std=2.7490
+2026-03-11 20:05:29,400 | INFO | anomaly_processor | Updated baseline for 'wind_speed': count=300, mean=9.6931, std=2.7490
+2026-03-11 20:05:29,400 | INFO | anomaly_processor | Running anomaly detector
+2026-03-11 20:05:29,555 | INFO | anomaly_processor | Anomaly detection completed successfully
+2026-03-11 20:05:29,557 | INFO | anomaly_processor | Uploading scored CSV to s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/processed/sensors_20260311T200528.csv
+2026-03-11 20:05:29,655 | INFO | anomaly_processor | Saving updated baseline to S3
+2026-03-11 20:05:29,656 | INFO | anomaly_baseline | Saving baseline to s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/state/baseline.json
+2026-03-11 20:05:29,685 | INFO | anomaly_baseline | Baseline saved successfully
+2026-03-11 20:05:29,685 | INFO | anomaly_processor | Baseline saved to s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/state/baseline.json
+2026-03-11 20:05:29,721 | INFO | anomaly_processor | Uploaded log file to s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/logs/app.log
+2026-03-11 20:05:29,722 | INFO | anomaly_processor | Uploading summary JSON to s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/processed/sensors_20260311T200528_summary.json
+2026-03-11 20:05:29,751 | INFO | anomaly_processor | Finished processing s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/raw/sensors_20260311T200528.csv | rows=100 | anomalies=6
+2026-03-11 20:06:29,001 | INFO | anomaly_app | Received request on /notify
+2026-03-11 20:06:29,001 | INFO | anomaly_app | SNS message type: Notification
+2026-03-11 20:06:29,001 | INFO | anomaly_app | Parsing SNS notification message
+2026-03-11 20:06:29,001 | INFO | anomaly_app | Notification contains 1 record(s)
+2026-03-11 20:06:29,001 | INFO | anomaly_app | Received S3 object key: raw/sensors_20260311T200628.csv
+2026-03-11 20:06:29,001 | INFO | anomaly_app | Queueing background processing for file: raw/sensors_20260311T200628.csv
+2026-03-11 20:06:29,002 | INFO | anomaly_processor | Starting processing for s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/raw/sensors_20260311T200628.csv
+2026-03-11 20:06:29,003 | INFO | anomaly_processor | Downloading raw file: s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/raw/sensors_20260311T200628.csv
+2026-03-11 20:06:29,082 | INFO | anomaly_processor | Loaded 100 rows with columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+2026-03-11 20:06:29,082 | INFO | anomaly_processor | Loading current baseline from S3
+2026-03-11 20:06:29,082 | INFO | anomaly_baseline | Loading baseline from s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/state/baseline.json
+2026-03-11 20:06:29,171 | INFO | anomaly_baseline | Baseline loaded successfully
+2026-03-11 20:06:29,171 | INFO | anomaly_processor | Baseline loaded successfully
+2026-03-11 20:06:29,172 | INFO | anomaly_processor | Column 'temperature' has 100 non-null values for baseline update
+2026-03-11 20:06:29,172 | INFO | anomaly_baseline | Updating baseline for channel 'temperature' with 100 new values
+2026-03-11 20:06:29,172 | INFO | anomaly_baseline | Updated channel 'temperature': count 300 -> 400, mean=21.8619, std=1.9895
+2026-03-11 20:06:29,172 | INFO | anomaly_processor | Updated baseline for 'temperature': count=400, mean=21.8619, std=1.9895
+2026-03-11 20:06:29,173 | INFO | anomaly_processor | Column 'humidity' has 100 non-null values for baseline update
+2026-03-11 20:06:29,173 | INFO | anomaly_baseline | Updating baseline for channel 'humidity' with 100 new values
+2026-03-11 20:06:29,173 | INFO | anomaly_baseline | Updated channel 'humidity': count 300 -> 400, mean=55.3622, std=7.0037
+2026-03-11 20:06:29,173 | INFO | anomaly_processor | Updated baseline for 'humidity': count=400, mean=55.3622, std=7.0037
+2026-03-11 20:06:29,174 | INFO | anomaly_processor | Column 'pressure' has 100 non-null values for baseline update
+2026-03-11 20:06:29,174 | INFO | anomaly_baseline | Updating baseline for channel 'pressure' with 100 new values
+2026-03-11 20:06:29,174 | INFO | anomaly_baseline | Updated channel 'pressure': count 300 -> 400, mean=1013.1668, std=3.9333
+2026-03-11 20:06:29,174 | INFO | anomaly_processor | Updated baseline for 'pressure': count=400, mean=1013.1668, std=3.9333
+2026-03-11 20:06:29,175 | INFO | anomaly_processor | Column 'wind_speed' has 100 non-null values for baseline update
+2026-03-11 20:06:29,175 | INFO | anomaly_baseline | Updating baseline for channel 'wind_speed' with 100 new values
+2026-03-11 20:06:29,175 | INFO | anomaly_baseline | Updated channel 'wind_speed': count 300 -> 400, mean=9.7166, std=2.8046
+2026-03-11 20:06:29,175 | INFO | anomaly_processor | Updated baseline for 'wind_speed': count=400, mean=9.7166, std=2.8046
+2026-03-11 20:06:29,175 | INFO | anomaly_processor | Running anomaly detector
+2026-03-11 20:06:29,334 | INFO | anomaly_processor | Anomaly detection completed successfully
+2026-03-11 20:06:29,336 | INFO | anomaly_processor | Uploading scored CSV to s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/processed/sensors_20260311T200628.csv
+2026-03-11 20:06:29,382 | INFO | anomaly_processor | Saving updated baseline to S3
+2026-03-11 20:06:29,382 | INFO | anomaly_baseline | Saving baseline to s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/state/baseline.json
+2026-03-11 20:06:29,409 | INFO | anomaly_baseline | Baseline saved successfully
+2026-03-11 20:06:29,409 | INFO | anomaly_processor | Baseline saved to s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/state/baseline.json
+2026-03-11 20:06:29,440 | INFO | anomaly_processor | Uploaded log file to s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/logs/app.log
+2026-03-11 20:06:29,441 | INFO | anomaly_processor | Uploading summary JSON to s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/processed/sensors_20260311T200628_summary.json
+2026-03-11 20:06:29,474 | INFO | anomaly_processor | Finished processing s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/raw/sensors_20260311T200628.csv | rows=100 | anomalies=5
+2026-03-11 20:07:29,446 | INFO | anomaly_app | Received request on /notify
+2026-03-11 20:07:29,446 | INFO | anomaly_app | SNS message type: Notification
+2026-03-11 20:07:29,446 | INFO | anomaly_app | Parsing SNS notification message
+2026-03-11 20:07:29,446 | INFO | anomaly_app | Notification contains 1 record(s)
+2026-03-11 20:07:29,446 | INFO | anomaly_app | Received S3 object key: raw/sensors_20260311T200728.csv
+2026-03-11 20:07:29,447 | INFO | anomaly_app | Queueing background processing for file: raw/sensors_20260311T200728.csv
+2026-03-11 20:07:29,448 | INFO | anomaly_processor | Starting processing for s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/raw/sensors_20260311T200728.csv
+2026-03-11 20:07:29,449 | INFO | anomaly_processor | Downloading raw file: s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/raw/sensors_20260311T200728.csv
+2026-03-11 20:07:29,547 | INFO | anomaly_processor | Loaded 100 rows with columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+2026-03-11 20:07:29,547 | INFO | anomaly_processor | Loading current baseline from S3
+2026-03-11 20:07:29,547 | INFO | anomaly_baseline | Loading baseline from s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/state/baseline.json
+2026-03-11 20:07:29,630 | INFO | anomaly_baseline | Baseline loaded successfully
+2026-03-11 20:07:29,630 | INFO | anomaly_processor | Baseline loaded successfully
+2026-03-11 20:07:29,631 | INFO | anomaly_processor | Column 'temperature' has 100 non-null values for baseline update
+2026-03-11 20:07:29,631 | INFO | anomaly_baseline | Updating baseline for channel 'temperature' with 100 new values
+2026-03-11 20:07:29,631 | INFO | anomaly_baseline | Updated channel 'temperature': count 400 -> 500, mean=21.9511, std=2.0152
+2026-03-11 20:07:29,631 | INFO | anomaly_processor | Updated baseline for 'temperature': count=500, mean=21.9511, std=2.0152
+2026-03-11 20:07:29,631 | INFO | anomaly_processor | Column 'humidity' has 100 non-null values for baseline update
+2026-03-11 20:07:29,631 | INFO | anomaly_baseline | Updating baseline for channel 'humidity' with 100 new values
+2026-03-11 20:07:29,632 | INFO | anomaly_baseline | Updated channel 'humidity': count 400 -> 500, mean=55.3128, std=6.6261
+2026-03-11 20:07:29,632 | INFO | anomaly_processor | Updated baseline for 'humidity': count=500, mean=55.3128, std=6.6261
+2026-03-11 20:07:29,632 | INFO | anomaly_processor | Column 'pressure' has 100 non-null values for baseline update
+2026-03-11 20:07:29,632 | INFO | anomaly_baseline | Updating baseline for channel 'pressure' with 100 new values
+2026-03-11 20:07:29,632 | INFO | anomaly_baseline | Updated channel 'pressure': count 400 -> 500, mean=1013.2093, std=3.9111
+2026-03-11 20:07:29,633 | INFO | anomaly_processor | Updated baseline for 'pressure': count=500, mean=1013.2093, std=3.9111
+2026-03-11 20:07:29,633 | INFO | anomaly_processor | Column 'wind_speed' has 100 non-null values for baseline update
+2026-03-11 20:07:29,633 | INFO | anomaly_baseline | Updating baseline for channel 'wind_speed' with 100 new values
+2026-03-11 20:07:29,633 | INFO | anomaly_baseline | Updated channel 'wind_speed': count 400 -> 500, mean=9.7730, std=2.7764
+2026-03-11 20:07:29,633 | INFO | anomaly_processor | Updated baseline for 'wind_speed': count=500, mean=9.7730, std=2.7764
+2026-03-11 20:07:29,633 | INFO | anomaly_processor | Running anomaly detector
+2026-03-11 20:07:29,792 | INFO | anomaly_processor | Anomaly detection completed successfully
+2026-03-11 20:07:29,794 | INFO | anomaly_processor | Uploading scored CSV to s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/processed/sensors_20260311T200728.csv
+2026-03-11 20:07:29,832 | INFO | anomaly_processor | Saving updated baseline to S3
+2026-03-11 20:07:29,833 | INFO | anomaly_baseline | Saving baseline to s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/state/baseline.json
+2026-03-11 20:07:29,871 | INFO | anomaly_baseline | Baseline saved successfully
+2026-03-11 20:07:29,872 | INFO | anomaly_processor | Baseline saved to s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/state/baseline.json
+2026-03-11 20:07:29,902 | INFO | anomaly_processor | Uploaded log file to s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/logs/app.log
+2026-03-11 20:07:29,902 | INFO | anomaly_processor | Uploading summary JSON to s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/processed/sensors_20260311T200728_summary.json
+2026-03-11 20:07:29,937 | INFO | anomaly_processor | Finished processing s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/raw/sensors_20260311T200728.csv | rows=100 | anomalies=6
+2026-03-11 20:08:29,162 | INFO | anomaly_app | Received request on /notify
+2026-03-11 20:08:29,162 | INFO | anomaly_app | SNS message type: Notification
+2026-03-11 20:08:29,162 | INFO | anomaly_app | Parsing SNS notification message
+2026-03-11 20:08:29,162 | INFO | anomaly_app | Notification contains 1 record(s)
+2026-03-11 20:08:29,162 | INFO | anomaly_app | Received S3 object key: raw/sensors_20260311T200828.csv
+2026-03-11 20:08:29,162 | INFO | anomaly_app | Queueing background processing for file: raw/sensors_20260311T200828.csv
+2026-03-11 20:08:29,164 | INFO | anomaly_processor | Starting processing for s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/raw/sensors_20260311T200828.csv
+2026-03-11 20:08:29,164 | INFO | anomaly_processor | Downloading raw file: s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/raw/sensors_20260311T200828.csv
+2026-03-11 20:08:29,240 | INFO | anomaly_processor | Loaded 100 rows with columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+2026-03-11 20:08:29,241 | INFO | anomaly_processor | Loading current baseline from S3
+2026-03-11 20:08:29,241 | INFO | anomaly_baseline | Loading baseline from s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/state/baseline.json
+2026-03-11 20:08:29,337 | INFO | anomaly_baseline | Baseline loaded successfully
+2026-03-11 20:08:29,337 | INFO | anomaly_processor | Baseline loaded successfully
+2026-03-11 20:08:29,338 | INFO | anomaly_processor | Column 'temperature' has 100 non-null values for baseline update
+2026-03-11 20:08:29,338 | INFO | anomaly_baseline | Updating baseline for channel 'temperature' with 100 new values
+2026-03-11 20:08:29,338 | INFO | anomaly_baseline | Updated channel 'temperature': count 500 -> 600, mean=21.9529, std=1.9367
+2026-03-11 20:08:29,338 | INFO | anomaly_processor | Updated baseline for 'temperature': count=600, mean=21.9529, std=1.9367
+2026-03-11 20:08:29,339 | INFO | anomaly_processor | Column 'humidity' has 100 non-null values for baseline update
+2026-03-11 20:08:29,339 | INFO | anomaly_baseline | Updating baseline for channel 'humidity' with 100 new values
+2026-03-11 20:08:29,339 | INFO | anomaly_baseline | Updated channel 'humidity': count 500 -> 600, mean=55.3817, std=7.0390
+2026-03-11 20:08:29,339 | INFO | anomaly_processor | Updated baseline for 'humidity': count=600, mean=55.3817, std=7.0390
+2026-03-11 20:08:29,340 | INFO | anomaly_processor | Column 'pressure' has 100 non-null values for baseline update
+2026-03-11 20:08:29,340 | INFO | anomaly_baseline | Updating baseline for channel 'pressure' with 100 new values
+2026-03-11 20:08:29,340 | INFO | anomaly_baseline | Updated channel 'pressure': count 500 -> 600, mean=1013.1962, std=3.8151
+2026-03-11 20:08:29,340 | INFO | anomaly_processor | Updated baseline for 'pressure': count=600, mean=1013.1962, std=3.8151
+2026-03-11 20:08:29,340 | INFO | anomaly_processor | Column 'wind_speed' has 100 non-null values for baseline update
+2026-03-11 20:08:29,340 | INFO | anomaly_baseline | Updating baseline for channel 'wind_speed' with 100 new values
+2026-03-11 20:08:29,341 | INFO | anomaly_baseline | Updated channel 'wind_speed': count 500 -> 600, mean=9.9150, std=2.8425
+2026-03-11 20:08:29,341 | INFO | anomaly_processor | Updated baseline for 'wind_speed': count=600, mean=9.9150, std=2.8425
+2026-03-11 20:08:29,341 | INFO | anomaly_processor | Running anomaly detector
+2026-03-11 20:08:29,497 | INFO | anomaly_processor | Anomaly detection completed successfully
+2026-03-11 20:08:29,499 | INFO | anomaly_processor | Uploading scored CSV to s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/processed/sensors_20260311T200828.csv
+2026-03-11 20:08:29,528 | INFO | anomaly_processor | Saving updated baseline to S3
+2026-03-11 20:08:29,528 | INFO | anomaly_baseline | Saving baseline to s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/state/baseline.json
+2026-03-11 20:08:29,599 | INFO | anomaly_baseline | Baseline saved successfully
+2026-03-11 20:08:29,599 | INFO | anomaly_processor | Baseline saved to s3://anomaly-detection-stack-appbucket-bm8kuvxwomcf/state/baseline.json
